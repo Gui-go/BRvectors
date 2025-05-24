@@ -1,6 +1,6 @@
-defaultProject: proj
+defaultProject: BRvectors
 defaultLocation: US
-defaultDataset: dataset/schema
+defaultDataset: personalhub11
 defaultAssertionDataset: dataform_assertions
 dataformCoreVersion: 3.0.0
 vars:
