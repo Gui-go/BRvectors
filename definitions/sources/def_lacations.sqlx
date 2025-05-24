@@ -1,8 +1,8 @@
 config {
  type: "declaration",
- database: "personalhub11",
+ database: dataform.projectConfig.defaultDatabase,
  schema: "brvectors",
- name: "df_locations"
+ name: "locations"
 }
 
 

@@ -1,6 +1,6 @@
 config {
     type: "table",
-    database: "personalhub11",
+    database: dataform.projectConfig.defaultDatabase,
     schema: "brvectors_" + dataform.projectConfig.vars.ENV,
     name: "df_locations",
     description: "",
@@ -13,4 +13,4 @@ config {
 SELECT
   *
 FROM
-  ${ref("personalhub11", "brvectors", "df_locations")}
+  ${ref(dataform.projectConfig.defaultDatabase, "brvectors", "locations")}
