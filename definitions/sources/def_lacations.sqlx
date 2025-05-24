@@ -1,0 +1,8 @@
+config {
+ type: "declaration",
+ database: "personalhub11",
+ schema: "brvectors",
+ name: "df_locations"
+}
+
+

@@ -1,0 +1,16 @@
+config {
+    type: "table",
+    database: "personalhub11",
+    schema: "brvectors_" + dataform.projectConfig.vars.ENV,
+    name: "df_locations",
+    description: "",
+    tags: [
+        "stage:to_be_difined",
+        "lifecycle:deactive"
+    ]
+}
+
+SELECT
+  *
+FROM
+  ${ref("personalhub11", "brvectors", "df_locations")}
