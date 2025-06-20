@@ -1,0 +1,24 @@
+config {
+  type: "operations",
+  database: dataform.projectConfig.defaultDatabase,
+  schema: "brvectors_" + dataform.projectConfig.vars.ENV,
+  name: "clean_municipalities",
+  description: "......",
+  dependencies: ["BR_Municipios_2024_nd"],
+  tags: [
+    "stage:to_be_defined",
+    "lifecycle:deactive"
+  ],
+  hasOutput: true,
+  columns: {
+
+  }
+}
+
+LOAD DATA OVERWRITE `${dataform.projectConfig.defaultDatabase}.brvectors_${dataform.projectConfig.vars.ENV}.clean_municipalities`
+FROM FILES (
+  format = 'NEWLINE_DELIMITED_JSON',
+  json_extension = 'GEOJSON',
+  uris = ['gs://personalhub13-brvectors-bucket/BR_Municipios_2024_nd.geojsonl']
+)
+

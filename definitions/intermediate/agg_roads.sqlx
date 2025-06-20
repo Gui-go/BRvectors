@@ -1,0 +1,32 @@
+config {
+  type: "table",
+  database: dataform.projectConfig.defaultDatabase,
+  schema: "brvectors_" + dataform.projectConfig.vars.ENV,
+  name: "agg_roads",
+  description: "Transformed table containing Brazilian road segments from the 2014 National Road Plan (PNV), sourced from DNIT. Includes spatial geometries and attributes describing road segments.",
+  tags: [
+    "stage:to_be_defined",
+    "lifecycle:deactive"
+  ],
+  bigquery: {
+    clusterBy: ["geom"]
+  },
+  columns: {
+    geom: "Spatial geometry of the road segment as a GEOGRAPHY type, derived from GeoJSON LineString coordinates in the source data. Represents the path of the road segment in Brazil’s road network.",
+    objectid: "Unique numeric identifier for each road segment, auto-generated in the source shapefile to distinguish individual features.",
+    codigo: "Unique identifier code for the road segment, following DNIT s naming convention. May include prefixes like 'BA' (Bahia), 'AC' (access), or 'Lig' (municipal linkage).",
+    tipo_pnv: "Pavement status of the road segment per the National Road Plan (PNV). Values include 'Pavimentada' (paved), 'Duplicada' (dual carriageway), or NULL (unspecified or unpaved).",
+    desc_seg: "Textual description of the road segment, detailing its purpose or geographic context (e.g., access roads, urban stretches, or highway connections)."
+  }
+}
+
+
+
+SELECT
+  geometry AS geom,
+  OBJECTID AS objectid,
+  CODIGO AS codigo,
+  TipoPNV AS tipo_pnv,
+  DescSeg AS desc_seg
+FROM ${ref(dataform.projectConfig.defaultDatabase, "brvectors_" + dataform.projectConfig.vars.ENV, "clean_roads")}
+

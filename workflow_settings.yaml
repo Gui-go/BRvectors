@@ -1,7 +1,8 @@
-defaultProject: BRvectors
+defaultProject: personalhub13
 defaultLocation: US
-defaultDataset: personalhub11
+defaultDataset: personalhub13
 defaultAssertionDataset: dataform_assertions
 dataformCoreVersion: 3.0.0
 vars:
  ENV: "dev"
+ GEMINI_CNX: "bq_gemini_connection"

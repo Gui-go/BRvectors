@@ -1,0 +1,8 @@
+config {
+ type: "declaration",
+ database: dataform.projectConfig.defaultDatabase,
+ schema: "brvectors_source",
+ name: "BR_Municipios_2024_nd"
+}
+
+
