@@ -2,7 +2,7 @@ config {
     type: "table",
     database: dataform.projectConfig.defaultDatabase,
     schema: "brvectors_" + dataform.projectConfig.vars.ENV,
-    name: "df_locations",
+    name: "clean_locations",
     description: "",
     tags: [
         "stage:to_be_difined",
@@ -13,4 +13,4 @@ config {
 SELECT
   *
 FROM
-  ${ref(dataform.projectConfig.defaultDatabase, "brvectors", "locations")}
+  ${ref(dataform.projectConfig.defaultDatabase, "brvectors_source", "locations")}

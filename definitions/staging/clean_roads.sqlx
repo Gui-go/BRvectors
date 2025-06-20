@@ -1,0 +1,28 @@
+config {
+  type: "operations",
+  database: dataform.projectConfig.defaultDatabase,
+  schema: "brvectors_" + dataform.projectConfig.vars.ENV,
+  name: "clean_roads",
+  description: "Raw table loaded from newline-delimited GeoJSON containing Brazilian road segments from the 2014 National Road Plan (PNV), sourced from DNIT.",
+  dependencies: ["rodovia_2014_nd"],
+  tags: [
+    "stage:to_be_defined",
+    "lifecycle:deactive"
+  ],
+  hasOutput: true,
+  columns: {
+    geometry: "GeoJSON geometry of the road segment, representing the path as a LineString. Will be transformed to GEOGRAPHY in downstream tables.",
+    OBJECTID: "Unique numeric identifier for each road segment, auto-generated in the source shapefile to distinguish individual features.",
+    CODIGO: "Unique identifier code for the road segment, following DNIT’s naming convention. May include prefixes like 'BA' (Bahia), 'AC' (access), or 'Lig' (municipal linkage).",
+    TipoPNV: "Pavement status of the road segment per the National Road Plan (PNV). Values include 'Pavimentada' (paved), 'Duplicada' (dual carriageway), or NULL (unspecified or unpaved).",
+    DescSeg: "Textual description of the road segment, detailing its purpose or geographic context (e.g., access roads, urban stretches, or highway connections)."
+  }
+}
+
+LOAD DATA OVERWRITE `${dataform.projectConfig.defaultDatabase}.brvectors_${dataform.projectConfig.vars.ENV}.clean_roads`
+FROM FILES (
+  format = 'NEWLINE_DELIMITED_JSON',
+  json_extension = 'GEOJSON',
+  uris = ['gs://personalhub13-brvectors-bucket/rodovia_2014_nd.geojson']
+)
+

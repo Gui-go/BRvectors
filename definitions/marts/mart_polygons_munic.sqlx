@@ -1,0 +1,16 @@
+config {
+  type: "table",
+  database: dataform.projectConfig.defaultDatabase,
+  schema: "brvectors_" + dataform.projectConfig.vars.ENV,
+  name: "polygons_munic",
+  description: "",
+  tags: [
+    "stage:to_be_defined",
+    "lifecycle:deactive"
+  ]
+}
+
+SELECT
+  *
+FROM ${ref(dataform.projectConfig.defaultDatabase, "brvectors_" + dataform.projectConfig.vars.ENV, "clean_municipalities")}
+

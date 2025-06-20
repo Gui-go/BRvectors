@@ -1,0 +1,20 @@
+config {
+  type: "table",
+  database: dataform.projectConfig.defaultDatabase,
+  schema: "brvectors_" + dataform.projectConfig.vars.ENV,
+  name: "mart_roads",
+  description: "",
+  tags: [
+    "stage:to_be_defined",
+    "lifecycle:deactive"
+  ]
+}
+
+SELECT
+  geom,
+  objectid,
+  codigo,
+  tipo_pnv,
+  desc_seg
+FROM ${ref(dataform.projectConfig.defaultDatabase, "brvectors_" + dataform.projectConfig.vars.ENV, "agg_roads")}
+

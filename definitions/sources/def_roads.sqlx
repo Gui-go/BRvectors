@@ -1,0 +1,8 @@
+config {
+ type: "declaration",
+ database: dataform.projectConfig.defaultDatabase,
+ schema: "brvectors_source",
+ name: "rodovia_2014_nd"
+}
+
+
